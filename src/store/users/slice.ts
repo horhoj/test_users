@@ -7,16 +7,19 @@ import {
 } from '@store/helpers';
 import { User } from '@entitiesTypes/users';
 import { UserPostListData } from '@entitiesTypes/userPostListData';
+import { Album } from '@entitiesTypes/albums';
 import * as thunks from './thunks';
 
 interface InitialState {
   fetchUserListRequest: RequestSliceStateProperty<User[]>;
   fetchUserPostListRequest: RequestSliceStateProperty<UserPostListData>;
+  fetchUserAlbumListRequest: RequestSliceStateProperty<Album[]>;
 }
 
 const initialState: InitialState = {
   fetchUserListRequest: makeRequestSliceStateProperty<User[]>(),
   fetchUserPostListRequest: makeRequestSliceStateProperty<UserPostListData>(),
+  fetchUserAlbumListRequest: makeRequestSliceStateProperty<Album[]>(),
 };
 
 export const { reducer, actions } = createSlice({
@@ -38,6 +41,11 @@ export const { reducer, actions } = createSlice({
       builder,
       thunks.fetchUserPostListThunk,
       'fetchUserPostListRequest',
+    );
+    makeRequestCaseToBuilder<InitialState>(
+      builder,
+      thunks.fetchUserAlbumListThunk,
+      'fetchUserAlbumListRequest',
     );
   },
 });

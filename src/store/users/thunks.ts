@@ -15,3 +15,17 @@ export const fetchUserPostListThunk = createAsyncThunk(
     return api.users.fetchUserPostList(userId);
   },
 );
+
+interface FetchUserAlbumListThunk {
+  userId: string;
+  successCb: () => void;
+}
+
+export const fetchUserAlbumListThunk = createAsyncThunk(
+  `${SLICE_NAME}/fetchUserAlbumListThunk`,
+  async ({ userId, successCb }: FetchUserAlbumListThunk) => {
+    const response = await api.users.fetchUserAlbumList(userId);
+    successCb();
+    return response;
+  },
+);

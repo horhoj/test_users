@@ -2,6 +2,7 @@ import axios, { AxiosRequestConfig } from 'axios';
 import { User } from '@entitiesTypes/users';
 import { Post } from '@entitiesTypes/posts';
 import { UserPostListData } from '@entitiesTypes/userPostListData';
+import { Album } from '@entitiesTypes/albums';
 
 const axiosInstance = axios.create({
   baseURL: 'https://jsonplaceholder.typicode.com',
@@ -46,4 +47,15 @@ export const fetchUserPostList = async (
   const postList = userPostListRequestResponse.data;
 
   return { user, postList };
+};
+
+export const fetchUserAlbumList = async (userId: string) => {
+  const requestConfig: AxiosRequestConfig = {
+    url: `/users/${userId}/albums`,
+    method: 'get',
+  };
+
+  const response = await axiosInstance<Album[]>(requestConfig);
+
+  return response.data;
 };
