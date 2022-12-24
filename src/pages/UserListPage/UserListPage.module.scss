@@ -1,4 +1,10 @@
 .wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.userListWrap {
   display: grid;
   gap: 20px;
   grid-template-columns: 1fr 1fr;

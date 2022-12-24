@@ -50,7 +50,9 @@ export const UserListPage: FC = () => {
   const handleModalClose = () => setAlbumListUserId(null);
 
   return (
-    <>
+    <div className={styles.wrap}>
+      {userListRequest.error && <div>userListRequest ERROR!</div>}
+      {albumsListRequest.error && <div>albumsListRequest ERROR!</div>}
       <Modal isOpen={Boolean(albumListUserId)} onClose={handleModalClose}>
         {albumsListRequest.data && user && (
           <AlbumCardList
@@ -60,7 +62,7 @@ export const UserListPage: FC = () => {
           />
         )}
       </Modal>
-      <div className={styles.wrap}>
+      <div className={styles.userListWrap}>
         {userListRequest.data &&
           userListRequest.data.map((user, index) => (
             <UserCard
@@ -72,6 +74,6 @@ export const UserListPage: FC = () => {
             />
           ))}
       </div>
-    </>
+    </div>
   );
 };
