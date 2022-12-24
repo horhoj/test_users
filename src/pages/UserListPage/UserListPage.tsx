@@ -2,13 +2,15 @@ import { FC, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@store/hooks';
 import { usersSlice } from '@store/users';
 import { UserCard } from '@components/UserCard';
+import { getRoutePath } from '@router/helpers';
+import { appSlice } from '@store/app';
 import styles from './UserListPage.module.scss';
 
 export const UserListPage: FC = () => {
   const dispatch = useAppDispatch();
 
   const userListRequest = useAppSelector(
-    usersSlice.selectors.getUserListRequest,
+    usersSlice.selectors.getFetchUserListRequest,
   );
 
   useEffect(() => {
@@ -21,6 +23,8 @@ export const UserListPage: FC = () => {
 
   const handleUserPostsBtnClk = (id: number) => {
     console.log('handleUserPostsBtnClk', id);
+    const path = getRoutePath('userPostList', id.toString());
+    dispatch(appSlice.actions.redirect(path));
   };
 
   return (

@@ -8,3 +8,10 @@ export const fetchUserListThunk = createAsyncThunk(
     return api.users.fetchUsers();
   },
 );
+
+export const fetchUserPostListThunk = createAsyncThunk(
+  `${SLICE_NAME}/fetchUserPostListThunk`,
+  async (userId: string) => {
+    return api.users.fetchUserPostList(userId);
+  },
+);
