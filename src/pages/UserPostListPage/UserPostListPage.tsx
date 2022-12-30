@@ -13,6 +13,8 @@ export const UserPostListPage: FC = () => {
 
   const dispatch = useAppDispatch();
 
+  const isLoading = useAppSelector(usersSlice.selectors.getIsLoading);
+
   const fetchUserPostListRequest = useAppSelector(
     usersSlice.selectors.getFetchUserPostListRequest,
   );
@@ -38,7 +40,9 @@ export const UserPostListPage: FC = () => {
   return (
     <div className={styles.wrap}>
       <div>
-        <Button onClick={handleBackBtnClk}>back</Button>
+        <Button onClick={handleBackBtnClk} disabled={isLoading}>
+          back
+        </Button>
       </div>
       {fetchUserPostListRequest.error && (
         <div>fetchUserPostListRequest ERROR!</div>

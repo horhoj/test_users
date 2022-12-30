@@ -11,6 +11,8 @@ import styles from './UserListPage.module.scss';
 export const UserListPage: FC = () => {
   const dispatch = useAppDispatch();
 
+  const isLoading = useAppSelector(usersSlice.selectors.getIsLoading);
+
   const albumListUserId = useAppSelector(
     usersSlice.selectors.getAlbumListUserId,
   );
@@ -65,6 +67,7 @@ export const UserListPage: FC = () => {
         {userListRequest.data &&
           userListRequest.data.map((user, index) => (
             <UserCard
+              disabled={isLoading}
               key={user.id}
               user={user}
               index={index + 1}

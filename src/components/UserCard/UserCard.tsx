@@ -8,6 +8,7 @@ interface UserCardProps {
   user: User;
   onPostsBtnClk: () => void;
   onAlbumsBtnClk: () => void;
+  disabled: boolean;
 }
 
 export const UserCard: FC<UserCardProps> = ({
@@ -15,6 +16,7 @@ export const UserCard: FC<UserCardProps> = ({
   index,
   onPostsBtnClk,
   onAlbumsBtnClk,
+  disabled,
 }) => {
   return (
     <div className={styles.wrap}>
@@ -47,8 +49,12 @@ export const UserCard: FC<UserCardProps> = ({
         <strong>website:</strong> {user.website}
       </div>
       <div className={styles.buttonList}>
-        <Button onClick={onPostsBtnClk}>posts</Button>
-        <Button onClick={onAlbumsBtnClk}>albums</Button>
+        <Button onClick={onPostsBtnClk} disabled={disabled}>
+          posts
+        </Button>
+        <Button onClick={onAlbumsBtnClk} disabled={disabled}>
+          albums
+        </Button>
       </div>
     </div>
   );

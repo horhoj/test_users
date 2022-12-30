@@ -7,4 +7,12 @@
   background-color: darkslategray;
   color: #eeeeee;
   font-weight: bold;
+
+  transition: background-color 200ms;
+
+  &[disabled] {
+    background-color: gray;
+    color: #aaa;
+    cursor: auto;
+  }
 }
