@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@store/hooks';
 import { usersSlice } from '@store/users';
 import { UserCard } from '@components/UserCard';
@@ -11,7 +11,9 @@ import styles from './UserListPage.module.scss';
 export const UserListPage: FC = () => {
   const dispatch = useAppDispatch();
 
-  const [albumListUserId, setAlbumListUserId] = useState<number | null>(null);
+  const albumListUserId = useAppSelector(
+    usersSlice.selectors.getAlbumListUserId,
+  );
 
   const userListRequest = useAppSelector(
     usersSlice.selectors.getFetchUserListRequest,
@@ -26,14 +28,9 @@ export const UserListPage: FC = () => {
   }, []);
 
   const handleUserAlbumsBtnClk = (id: number) => {
-    const successCb = () => {
-      setAlbumListUserId(id);
-    };
-
     dispatch(
       usersSlice.thunks.fetchUserAlbumListThunk({
-        userId: id.toString(),
-        successCb,
+        userId: id,
       }),
     );
   };
@@ -47,7 +44,9 @@ export const UserListPage: FC = () => {
     (user) => user.id === albumListUserId,
   );
 
-  const handleModalClose = () => setAlbumListUserId(null);
+  const handleModalClose = () => {
+    dispatch(usersSlice.actions.setAlbumListUserId(null));
+  };
 
   return (
     <div className={styles.wrap}>

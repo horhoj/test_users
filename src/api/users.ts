@@ -49,7 +49,7 @@ export const fetchUserPostList = async (
   return { user, postList };
 };
 
-export const fetchUserAlbumList = async (userId: string) => {
+export const fetchUserAlbumList = async (userId: number) => {
   const requestConfig: AxiosRequestConfig = {
     url: `/users/${userId}/albums`,
     method: 'get',

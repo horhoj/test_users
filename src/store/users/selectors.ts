@@ -13,3 +13,6 @@ export const getIsLoading = (state: RootState) =>
   state.users.fetchUserPostListRequest.isLoading ||
   state.users.fetchUserAlbumListRequest.isLoading ||
   state.users.fetchUserListRequest.isLoading;
+
+export const getAlbumListUserId = (state: RootState) =>
+  state.users.albumListUserId;
